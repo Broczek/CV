@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Mateusz Broczkowski</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            font-size: 0.95rem;
+        }
+        .cv-container {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        .section-title {
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #111827;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .job-title, .project-title {
+            color: #1f2937;
+            font-weight: 700;
+        }
+        .company-name {
+            color: #374151;
+            font-weight: 500;
+        }
+        .date-location {
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+        ul li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-size: 1.25rem;
+            line-height: 1.25rem;
+        }
+        .tech-stack-badge {
+            display: inline-block;
+            background-color: #e0e7ff;
+            color: #3730a3;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .contact-link {
+            transition: color 0.2s;
+        }
+        .contact-link:hover {
+            color: #3b82f6;
+        }
+        #save-pdf-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        #save-pdf-button:hover {
+            transform: scale(1.05);
+        }
+        @media print {
+            body {
+                background-color: #fff;
+                font-size: 10pt;
+            }
+            .cv-container {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+                border: none;
+            }
+            #save-pdf-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div id="cv-content" class="cv-container max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-lg border border-gray-200">
+        <!-- HEADER -->
+        <header class="flex flex-col md:flex-row items-center justify-between mb-6">
+            <div class="flex items-center">
+                <img 
+                    src="https://media.licdn.com/dms/image/v2/D4D03AQHPvIj6nKAo7Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1706727283110?e=1758758400&v=beta&t=214eRJRvtDktKa0A9zH9iTNzJYFVZadXPqYsTGM85ms" 
+                    alt="Mateusz Broczkowski" 
+                    class="w-28 h-28 rounded-full mr-6"
+                    crossorigin="anonymous"
+                    onerror="this.onerror=null; this.src='https://placehold.co/112x112/E2E8F0/4A5568?text=Error';">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Mateusz Broczkowski</h1>
+                    <h2 class="text-lg md:text-xl font-medium text-blue-600 mt-1">Biomedical & Software Engineer</h2>
+                </div>
+            </div>
+            <div class="mt-6 md:mt-0 text-right text-xs text-gray-600 space-y-1">
+                <a href="mailto:broczkowskimateusz@gmail.com" class="flex items-center justify-end contact-link">
+                    <span class="mr-2">broczkowskimateusz@gmail.com</span>
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="tel:+48504428224" class="flex items-center justify-end contact-link">
+                    <span class="mr-2">+48 504 428 224</span>
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/mateuszbroczkowski/" target="_blank" class="flex items-center justify-end contact-link">
+                    <span class="mr-2">linkedin.com/in/mateuszbroczkowski</span>
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                 <div class="flex items-center justify-end">
+                    <span class="mr-2">Warsaw, Poland</span>
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- SUMMARY -->
+        <section class="mb-6">
+            <h3 class="section-title text-base">Summary</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Biomedical engineer with experience in full-stack software and firmware engineering, as well as medical software and hardware development. Focuses on delivering efficient and innovative solutions, from low-level BIOS programming to web applications and medical data processing systems. Seeking opportunities to grow in projects that merge the worlds of software and high-tech engineering.
+            </p>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="mb-6">
+            <h3 class="section-title text-base">Professional Experience</h3>
+            <div class="mb-5">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-lg job-title">Firmware & Full-Stack Developer Intern</h4>
+                        <p class="company-name">Intel</p>
+                    </div>
+                    <p class="date-location text-right">May 2024 – Present<br>Gdansk (Remote)</p>
+                </div>
+                <ul class="mt-2 list-inside text-gray-700 text-sm">
+                    <li>Developing key BIOS component (MRC) for PTL family processors, ensuring their stability and performance</li>
+                    <li>Managing servers and processes on virtual machines to support MRC developers</li>
+                    <li>Automating tests and developing software (backend and frontend) for a web tool used to visualize test results</li>
+                    <li>Utilizing CI/CD technologies (TeamCity) to optimize deployment and test processes</li>
+                </ul>
+            </div>
+            <div class="mb-5">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-lg job-title">Medical Equipment Technical Service Intern</h4>
+                        <p class="company-name">Siemens Healthineers</p>
+                    </div>
+                    <p class="date-location text-right">Jul 2023 – Oct 2023<br>Poland (Fieldwork)</p>
+                </div>
+                <ul class="mt-2 list-inside text-gray-700 text-sm">
+                    <li>Diagnosed and resolved technical issues in advanced medical equipment</li>
+                    <li>Provided technical support to clients, gaining experience in direct communication and customer service</li>
+                    <li>Expanded knowledge of electronics, design, and operation of medical systems</li>
+                </ul>
+            </div>
+            <div class="mb-5">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-lg job-title">Tutor</h4>
+                        <p class="company-name">Moose</p>
+                    </div>
+                    <p class="date-location text-right">Sep 2022 – Present<br>Warsaw (Remote)</p>
+                </div>
+                <ul class="mt-2 list-inside text-gray-700 text-sm">
+                    <li>Tutoring students in Mathematics, Physics, and Biology</li>
+                </ul>
+            </div>
+            <div class="mb-5">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-lg job-title">Dental Assistance</h4>
+                        <p class="company-name">Janident</p>
+                    </div>
+                    <p class="date-location text-right"> Jun 2021 - Sep 2021<br>Skierniewice</p>
+                </div>
+                <ul class="mt-2 list-inside text-gray-700 text-sm">
+                    <li>Assisted with dental procedures, managed medical instruments, and supported patient care</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="mb-6">
+            <h3 class="section-title text-base">Education</h3>
+            <div class="mb-3">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-lg job-title">Biomedical Engineering, B.Sc.</h4>
+                        <p class="company-name">Warsaw University of Technology</p>
+                    </div>
+                    <p class="date-location text-right">Oct 2021 – May 2025</p>
+                </div>
+                <p class="mt-1 text-gray-700 text-sm">Acquired knowledge in fields such as computer science, programming, electronics, medical physics and biomechanics. Graduated with distinction (GPA 4.6)</p>
+            </div>
+            <div class="mb-3">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="text-lg job-title"> High School</h4>
+                        <p class="company-name">Klementyna Hoffmanowa Secondary School No. IX, Warsaw</p>
+                    </div>
+                    <p class="date-location text-right">Sep 2018 - Jun 2021</p>
+                </div>
+                <p class="mt-1 text-gray-700 text-sm">Attended the second by graduation and seventh by overall ranking high school in the country, where my specialty subjects were physics, biology and chemistry</p>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="mb-6">
+            <h3 class="section-title text-base">Selected Projects</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                <div class="mb-2">
+                     <h4 class="text-lg project-title">
+                        <a href="https://github.com/Broczek/Magnetocardiogram" target="_blank" class="hover:text-blue-600 hover:underline transition-colors">
+                            MCG Signal Analysis System <i class="fas fa-external-link-alt text-xs align-top"></i>
+                        </a>
+                    </h4>
+                     <p class="mt-1 text-gray-600 text-sm">A comprehensive solution for acquiring, processing and visualizing data from a portable magnetocardiographic sensor. Presented at the 31st Conference of the Polish Cardiac Society in Zakopane</p>
+                     <div class="mt-2">
+                        <span class="tech-stack-badge">Python</span><span class="tech-stack-badge">Signal processing</span><span class="tech-stack-badge">Batchfile</span><span class="tech-stack-badge">Automation</span><span class="tech-stack-badge">Embedded</span><span class="tech-stack-badge">Full-Stack</span>
+                     </div>
+                </div>
+                <div class="mb-2">
+                     <h4 class="text-lg project-title">
+                        <a href="https://github.com/Broczek/Heart-Disease-Predicator" target="_blank" class="hover:text-blue-600 hover:underline transition-colors">
+                            Heart Disease Predictor <i class="fas fa-external-link-alt text-xs align-top"></i>
+                        </a>
+                    </h4>
+                     <p class="mt-1 text-gray-600 text-sm">An application for visualizing patient cardiovascular data, featuring an AI model that predicts the risk of heart disease</p>
+                     <div class="mt-2">
+                        <span class="tech-stack-badge">Python</span><span class="tech-stack-badge">R/Shiny</span><span class="tech-stack-badge">AI/ML</span><span class="tech-stack-badge">Data engineering</span><span class="tech-stack-badge">MLP</span><span class="tech-stack-badge">Full-Stack</span>
+                     </div>
+                </div>
+                <div class="mb-2">
+                    <h4 class="text-lg project-title">
+                        <a href="https://github.com/Broczek/Chess-engine" target="_blank" class="hover:text-blue-600 hover:underline transition-colors">
+                            Chess Engine <i class="fas fa-external-link-alt text-xs align-top"></i>
+                        </a>
+                    </h4>
+                    <p class="mt-1 text-gray-600 text-sm">A functional chess engine in C++, with move generation, board evaluation and a search algorithm to find the best move</p>
+                    <div class="mt-2">
+                        <span class="tech-stack-badge">C/C++</span><span class="tech-stack-badge">Algorithms</span><span class="tech-stack-badge">Game AI</span>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <h4 class="text-lg project-title">
+                        <a href="https://github.com/Broczek/F1-Dashboard" target="_blank" class="hover:text-blue-600 hover:underline transition-colors">
+                            F1 Dashboard <i class="fas fa-external-link-alt text-xs align-top"></i>
+                        </a>
+                    </h4>
+                    <p class="mt-1 text-gray-600 text-sm">An interactive web dashboard for visualizing and analyzing Formula 1 race data, including driver performance, lap times, team standings and much more</p>
+                    <div class="mt-2">
+                        <span class="tech-stack-badge">Python</span><span class="tech-stack-badge">Flutter</span><span class="tech-stack-badge">FastAPI</span><span class="tech-stack-badge">Full-Stack</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECHNICAL SKILLS -->
+        <section class="mb-6">
+            <h3 class="section-title text-base">Technical Skills</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-gray-700 text-sm">
+                <div><h5 class="font-bold mb-2">Languages</h5><ul><li>C/C++</li><li>Python</li><li>JavaScript</li><li>HTML/CSS</li><li>VHDL</li><li>R</li><li>Matlab</li><li>SQL</li><li>ASM</li></ul></div>
+                <div><h5 class="font-bold mb-2">Technologies</h5><ul><li>Flask</li><li>Vue.js</li><li>Shiny</li><li>AI/ML</li><li>Bootstrap</li><li>Flutter</li><li>FastAPI</li><li>UART</li></ul></div>
+                <div><h5 class="font-bold mb-2">Tools & Platforms</h5><ul><li>Git</li><li>Docker</li><li>Kubernetes</li><li>TeamCity (CI/CD)</li><li>Linux</li><li>AWS/Azure</li><li>Solidworks</li><li>Ansys</li><li>KiCAD</li></ul></div>
+                <div><h5 class="font-bold mb-2">Other</h5><ul><li>Agile/Scrum</li><li>Kanban</li><li>UX/UI</li><li>Virtual machines</li><li>Microelectronics</li><li>SoC</li><li>STM32</li><li>Oscilloscope</li><li>Multimeter</li></ul></div>
+            </div>
+        </section>
+
+        <!-- LANGUAGES & ACHIEVEMENTS -->
+        <section class="grid md:grid-cols-2 gap-8 mb-6">
+            <div>
+                <h3 class="section-title text-base">Languages</h3>
+                <ul class="text-gray-700 text-sm">
+                    <li><b>Polish</b> - Native</li>
+                    <li><b>English</b> - Fluent (C1/C2)</li>
+                    <li><b>German</b> - Intermediate (B2)</li>
+                    <li><b>Chinese</b> - Beginner (A1)</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="section-title text-base">Accomplishments</h3>
+                 <ul class="text-gray-700 text-sm">
+                    <li>University chancellor's scholarship (2023-2024, 2024-2025)</li>
+                    <li>Mentor in the "New Technologies for Women Ukraine" program (2024-2025) - Perspektywy Educational Foundation/Intel </li>
+                    <li>Neural stimulator design (2024)</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    
+    <button id="save-pdf-button" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center">
+        <i class="fas fa-download mr-2"></i> Save as PDF
+    </button>
+
+    <!-- DOWNLOAD -->
+    <script>
+        document.getElementById('save-pdf-button').addEventListener('click', () => {
+            const button = document.getElementById('save-pdf-button');
+            const element = document.getElementById('cv-content');
+            const img = element.querySelector('img');
+
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Generating...';
+            button.disabled = true;
+
+            const generatePdf = () => {
+                const originalBoxShadow = element.style.boxShadow;
+                
+                element.classList.remove('border', 'border-gray-200', 'rounded-lg');
+                element.style.boxShadow = 'none';
+
+                const a4WidthPt = 595.28;
+                const contentHeightPt = element.scrollHeight * 0.8;
+
+                const opt = {
+                    margin: 0,
+                    filename: 'CV-Mateusz-Broczkowski.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true, logging: false },
+                    jsPDF: { 
+                        unit: 'pt', 
+                        format: [a4WidthPt, contentHeightPt], 
+                        orientation: 'portrait' 
+                    }
+                };
+
+                html2pdf().set(opt).from(element).save().then(() => {
+                    element.classList.add('border', 'border-gray-200', 'rounded-lg');
+                    element.style.boxShadow = originalBoxShadow;
+                    
+                    button.innerHTML = '<i class="fas fa-download mr-2"></i> Save as PDF';
+                    button.disabled = false;
+                });
+            };
+
+            if (!img || !img.src || img.src.startsWith('data:image')) {
+                generatePdf();
+                return;
+            }
+            
+            const imageLoadPromise = new Promise((resolve, reject) => {
+                const tempImg = new Image();
+                tempImg.crossOrigin = "Anonymous";
+                
+                tempImg.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = tempImg.naturalWidth;
+                    canvas.height = tempImg.naturalHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(tempImg, 0, 0);
+                    try {
+                        const dataURL = canvas.toDataURL('image/jpeg');
+                        img.src = dataURL;
+                        resolve();
+                    } catch (e) {
+                        console.error("Canvas toDataURL error:", e);
+                        reject(new Error("Could not convert image to Data URL."));
+                    }
+                };
+                
+                tempImg.onerror = (err) => {
+                    console.error("Image loading error:", err);
+                    reject(new Error("Failed to load the profile image. Check the URL and CORS policy."));
+                };
+                
+                tempImg.src = img.src;
+            });
+
+            imageLoadPromise.then(() => {
+                generatePdf();
+            }).catch(err => {
+                console.error("Failed to process image for PDF generation:", err);
+                button.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i> Image Error';
+                button.disabled = false;
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-download mr-2"></i> Save as PDF';
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>
