@@ -9,12 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8f9fa;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
         }
         .cv-container {
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -34,24 +33,25 @@
         }
         .company-name {
             color: #374151;
-            font-weight: 500;
+            font-weight: 600;
         }
         .date-location {
             color: #6b7280;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
         }
         ul li {
             position: relative;
-            padding-left: 1.25rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            padding-left: 1rem;
+            margin-bottom: 0.25rem;
         }
         ul li::before {
             content: '•';
             position: absolute;
             left: 0;
             color: #3b82f6;
-            font-size: 1.25rem;
-            line-height: 1.25rem;
+            font-size: 1rem;
+            line-height: 1rem;
         }
         .tech-stack-badge {
             display: inline-block;
@@ -59,7 +59,7 @@
             color: #3730a3;
             padding: 0.25rem 0.75rem;
             border-radius: 9999px;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 500;
             margin-right: 0.5rem;
             margin-top: 0.5rem;
@@ -80,19 +80,31 @@
         #save-pdf-button:hover {
             transform: scale(1.05);
         }
+
         @media print {
             body {
                 background-color: #fff;
                 font-size: 10pt;
+                margin: 0;
+                padding: 0;
             }
             .cv-container {
                 box-shadow: none;
                 margin: 0;
+                padding: 0;
+                width: 100%;
                 max-width: 100%;
                 border: none;
+                border-radius: 0;
             }
             #save-pdf-button {
                 display: none;
+            }
+            header, section, .mb-5, .mb-3, .mb-2 {
+                break-inside: avoid;
+            }
+            h3.section-title {
+                break-before: none;
             }
         }
     </style>
@@ -106,7 +118,6 @@
                     src="https://media.licdn.com/dms/image/v2/D4D03AQHPvIj6nKAo7Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1706727283110?e=1758758400&v=beta&t=214eRJRvtDktKa0A9zH9iTNzJYFVZadXPqYsTGM85ms" 
                     alt="Mateusz Broczkowski" 
                     class="w-28 h-28 rounded-full mr-6"
-                    crossorigin="anonymous"
                     onerror="this.onerror=null; this.src='https://placehold.co/112x112/E2E8F0/4A5568?text=Error';">
                 <div>
                     <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Mateusz Broczkowski</h1>
@@ -309,92 +320,12 @@
     </div>
     
     <button id="save-pdf-button" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center">
-        <i class="fas fa-download mr-2"></i> Save as PDF
+        <i class="fas fa-print mr-2"></i> Save/Print PDF
     </button>
 
-    <!-- DOWNLOAD -->
     <script>
         document.getElementById('save-pdf-button').addEventListener('click', () => {
-            const button = document.getElementById('save-pdf-button');
-            const element = document.getElementById('cv-content');
-            const img = element.querySelector('img');
-
-            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Generating...';
-            button.disabled = true;
-
-            const generatePdf = () => {
-                const originalBoxShadow = element.style.boxShadow;
-                
-                element.classList.remove('border', 'border-gray-200', 'rounded-lg');
-                element.style.boxShadow = 'none';
-
-                const a4WidthPt = 595.28;
-                const contentHeightPt = element.scrollHeight * 0.8;
-
-                const opt = {
-                    margin: 0,
-                    filename: 'CV-Mateusz-Broczkowski.pdf',
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true, logging: false },
-                    jsPDF: { 
-                        unit: 'pt', 
-                        format: [a4WidthPt, contentHeightPt], 
-                        orientation: 'portrait' 
-                    }
-                };
-
-                html2pdf().set(opt).from(element).save().then(() => {
-                    element.classList.add('border', 'border-gray-200', 'rounded-lg');
-                    element.style.boxShadow = originalBoxShadow;
-                    
-                    button.innerHTML = '<i class="fas fa-download mr-2"></i> Save as PDF';
-                    button.disabled = false;
-                });
-            };
-
-            if (!img || !img.src || img.src.startsWith('data:image')) {
-                generatePdf();
-                return;
-            }
-            
-            const imageLoadPromise = new Promise((resolve, reject) => {
-                const tempImg = new Image();
-                tempImg.crossOrigin = "Anonymous";
-                
-                tempImg.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = tempImg.naturalWidth;
-                    canvas.height = tempImg.naturalHeight;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(tempImg, 0, 0);
-                    try {
-                        const dataURL = canvas.toDataURL('image/jpeg');
-                        img.src = dataURL;
-                        resolve();
-                    } catch (e) {
-                        console.error("Canvas toDataURL error:", e);
-                        reject(new Error("Could not convert image to Data URL."));
-                    }
-                };
-                
-                tempImg.onerror = (err) => {
-                    console.error("Image loading error:", err);
-                    reject(new Error("Failed to load the profile image. Check the URL and CORS policy."));
-                };
-                
-                tempImg.src = img.src;
-            });
-
-            imageLoadPromise.then(() => {
-                generatePdf();
-            }).catch(err => {
-                console.error("Failed to process image for PDF generation:", err);
-                button.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i> Image Error';
-                button.disabled = false;
-                setTimeout(() => {
-                    button.innerHTML = '<i class="fas fa-download mr-2"></i> Save as PDF';
-                }, 3000);
-            });
+            window.print();
         });
     </script>
 </body>
